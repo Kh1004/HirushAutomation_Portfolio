@@ -1,11 +1,8 @@
 import type { StaticImageData } from 'next/image';
 
 import heroAutomationImg from '@/assets/images/hero_automation_control_1794657179916.jpg';
-import aboutControlPanelImg from '@/assets/images/about_control_panel_1794657180435.jpg';
 import waterTreatmentImg from '@/assets/images/project_water_treatment_1794657181222.jpg';
 import factoryAutomationImg from '@/assets/images/project_factory_automation_1794657182281.jpg';
-import scadaHmiImg from '@/assets/images/service_scada_hmi_1794663344634.jpg';
-import embeddedIotImg from '@/assets/images/service_embedded_iot_1794663346671.jpg';
 
 /* ============================================================================
  * SINGLE-FILE CONTENT CONFIGURATION
@@ -164,17 +161,17 @@ export const hero = {
   secondaryCta: { label: 'Request Consultation', href: '#contact' } as LinkItem,
   backgroundImage: heroAutomationImg as ImageSource,
   slides: [
-    { id: 'plc', label: 'PLC Programming', image: heroAutomationImg as ImageSource },
-    { id: 'hmi', label: 'HMI/SCADA Design', image: scadaHmiImg as ImageSource },
+    { id: 'plc', label: 'PLC Programming', image: '/assets/aistudio/plc_48c8d680.png' },
+    { id: 'hmi', label: 'HMI/SCADA Design', image: '/assets/aistudio/hmi_35e7747e.png' },
     {
       id: 'panel',
       label: 'Electrical & Control Panel',
-      image: aboutControlPanelImg as ImageSource,
+      image: '/assets/aistudio/control_panel_9f36a063.png',
     },
     {
       id: 'embedded',
       label: 'Embedded Controller Design',
-      image: embeddedIotImg as ImageSource,
+      image: '/assets/aistudio/embedded_eb02073d.png',
     },
   ],
 };
@@ -182,7 +179,7 @@ export const hero = {
 /* 4. ABOUT, MISSION & VISION */
 export const about = {
   title: 'About Us',
-  image: aboutControlPanelImg as ImageSource,
+  image: '/assets/aistudio/control_panel_9f36a063.png' as ImageSource,
   imageAlt: 'Electrical and Control Panel Engineering',
   intro: [
     'Hirush Automation Pte Ltd was established in Singapore as a distinguished Electrical, Control, and Automation Company. In addition to our presence in Singapore, Hirush Automation Pvt Ltd in Sri Lanka also contributes significantly to our success. Our expansion into Sri Lanka has been driven by the same commitment to excellence in Electrical, Control, and Automation services.',
@@ -230,7 +227,7 @@ export const services: Service[] = [
       'Testing, Commissioning & Support',
     ],
     icon: 'plc',
-    image: heroAutomationImg,
+    image: '/assets/aistudio/plc_48c8d680.png',
   },
   {
     id: 'hmi-scada-design',
@@ -247,7 +244,7 @@ export const services: Service[] = [
       'Multi-Brand Platform Support',
     ],
     icon: 'hmi',
-    image: scadaHmiImg,
+    image: '/assets/aistudio/hmi_35e7747e.png',
   },
   {
     id: 'electrical-control-panel',
@@ -264,7 +261,7 @@ export const services: Service[] = [
       'Drawing & Documentation Support',
     ],
     icon: 'panel',
-    image: aboutControlPanelImg,
+    image: '/assets/aistudio/control_panel_9f36a063.png',
   },
   {
     id: 'iot-solutions',
@@ -281,7 +278,7 @@ export const services: Service[] = [
       'Predictive Maintenance Support',
     ],
     icon: 'iot',
-    image: factoryAutomationImg,
+    image: '/assets/aistudio/project1_5bc6bd0f.png',
   },
   {
     id: 'embedded-controller-design',
@@ -298,7 +295,7 @@ export const services: Service[] = [
       'Concept to Final Product',
     ],
     icon: 'embedded',
-    image: embeddedIotImg,
+    image: '/assets/aistudio/embedded_eb02073d.png',
   },
 ];
 
@@ -422,7 +419,7 @@ export const products: Product[] = [
       'Centralized system management',
     ],
     icon: 'scada',
-    image: scadaHmiImg,
+    image: '/assets/aistudio/hmi_35e7747e.png',
   },
   {
     id: 'hirushcore-alert',
@@ -437,7 +434,7 @@ export const products: Product[] = [
       'Critical event escalation support',
     ],
     icon: 'alert',
-    image: heroAutomationImg,
+    image: '/assets/aistudio/project1_5bc6bd0f.png',
   },
   {
     id: 'hirushcore-sentinel',
@@ -451,7 +448,7 @@ export const products: Product[] = [
       'Web-based alarm dashboards',
     ],
     icon: 'sentinel',
-    image: aboutControlPanelImg,
+    image: '/assets/aistudio/project4_3ca87e0c.png',
   },
   {
     id: 'hirushcore-data-collector',
@@ -466,7 +463,7 @@ export const products: Product[] = [
       'Integration with industrial applications',
     ],
     icon: 'collector',
-    image: waterTreatmentImg,
+    image: '/assets/aistudio/project3_ea8a1936.png',
   },
   {
     id: 'hirushcore-appstudio',
@@ -481,7 +478,7 @@ export const products: Product[] = [
       'Secure user authentication',
     ],
     icon: 'appstudio',
-    image: embeddedIotImg,
+    image: '/assets/aistudio/embedded_eb02073d.png',
   },
   {
     id: 'hirushcore-app',
@@ -496,7 +493,7 @@ export const products: Product[] = [
       'Secure industrial connectivity',
     ],
     icon: 'app',
-    image: factoryAutomationImg,
+    image: '/assets/aistudio/project2_842d791d.png',
   },
 ];
 
@@ -509,18 +506,44 @@ export const projectReference = {
 };
 
 export const featuredProjectIds: string[] = [
-  'treated-waste-water-recovery',
-  'fuel-injection-calibration',
-  'semakau-electrical-generation-distribution',
+  'programming-support-otv-veolia',
+  'bms-system-omni-logistics',
+  'vertical-injector-ls-marine',
 ];
 
 export const projectGallery: GalleryItem[] = [
-  { id: 'gallery-panel', label: 'Electrical & Control Panel', image: aboutControlPanelImg },
-  { id: 'gallery-plc', label: 'PLC Programming', image: heroAutomationImg },
-  { id: 'gallery-scada', label: 'HMI/SCADA Design', image: scadaHmiImg },
-  { id: 'gallery-water', label: 'Water Treatment', image: waterTreatmentImg },
-  { id: 'gallery-factory', label: 'Manufacturing Factories', image: factoryAutomationImg },
-  { id: 'gallery-embedded', label: 'Embedded Controller Design', image: embeddedIotImg },
+  {
+    id: 'gallery-panel',
+    label: 'Electrical & Control Panel',
+    image: '/assets/aistudio/control_panel_9f36a063.png',
+  },
+  { id: 'gallery-plc', label: 'PLC Programming', image: '/assets/aistudio/plc_48c8d680.png' },
+  { id: 'gallery-scada', label: 'HMI/SCADA Design', image: '/assets/aistudio/hmi_35e7747e.png' },
+  {
+    id: 'gallery-embedded',
+    label: 'Embedded Controller Design',
+    image: '/assets/aistudio/embedded_eb02073d.png',
+  },
+  {
+    id: 'gallery-datacenter',
+    label: 'Data Centers',
+    image: '/assets/aistudio/project1_5bc6bd0f.png',
+  },
+  {
+    id: 'gallery-chiller',
+    label: 'Chiller Systems',
+    image: '/assets/aistudio/project4_3ca87e0c.png',
+  },
+  {
+    id: 'gallery-water',
+    label: 'Water Treatment',
+    image: '/assets/aistudio/project3_ea8a1936.png',
+  },
+  {
+    id: 'gallery-marine',
+    label: 'HMI/SCADA Design',
+    image: '/assets/aistudio/project2_842d791d.png',
+  },
 ];
 
 export type ProjectFilterKey = 'all' | ProjectCapability;
@@ -687,6 +710,7 @@ export const projects: Project[] = [
     role: 'PLC Programming and SCADA/HMI Development',
     location: 'Sri Lanka',
     capability: 'plc',
+    image: '/assets/aistudio/project3_ea8a1936.png',
   },
   {
     id: 'bms-system-omni-logistics',
@@ -695,6 +719,7 @@ export const projects: Project[] = [
     role: 'PLC Programming and SCADA Development',
     location: 'Singapore',
     capability: 'plc',
+    image: '/assets/aistudio/project4_3ca87e0c.png',
   },
   {
     id: 'vertical-injector-ls-marine',
@@ -703,6 +728,7 @@ export const projects: Project[] = [
     role: 'PLC Programming and SCADA Development',
     location: 'Singapore',
     capability: 'plc',
+    image: '/assets/aistudio/project2_842d791d.png',
   },
   {
     id: 'ro-system-fn-foods',
@@ -726,7 +752,7 @@ export const industries: Industry[] = [
     description:
       'Solutions for controlling and monitoring water treatment processes, ensuring water quality and safety.',
     icon: 'water',
-    image: waterTreatmentImg,
+    image: '/assets/aistudio/project3_ea8a1936.png',
   },
   {
     id: 'gas-systems',
@@ -734,7 +760,7 @@ export const industries: Industry[] = [
     description:
       'Gas control systems offering precise control and safety measures for gas handling and distribution.',
     icon: 'gas',
-    image: scadaHmiImg,
+    image: '/assets/aistudio/hmi_35e7747e.png',
   },
   {
     id: 'data-centers',
@@ -742,7 +768,7 @@ export const industries: Industry[] = [
     description:
       'Advanced control and monitoring systems to optimize data center operations, ensuring reliability and efficiency.',
     icon: 'dataCenter',
-    image: heroAutomationImg,
+    image: '/assets/aistudio/project1_5bc6bd0f.png',
   },
   {
     id: 'acmv',
@@ -750,7 +776,7 @@ export const industries: Industry[] = [
     description:
       'Climate control systems for air conditioning, mechanical ventilation, maintaining optimal conditions for comfort and productivity.',
     icon: 'acmv',
-    image: aboutControlPanelImg,
+    image: '/assets/aistudio/project4_3ca87e0c.png',
   },
   {
     id: 'chiller-systems',
@@ -758,7 +784,7 @@ export const industries: Industry[] = [
     description:
       'Solutions for efficient cooling and temperature control essential for various industrial processes.',
     icon: 'chiller',
-    image: scadaHmiImg,
+    image: '/assets/aistudio/project4_3ca87e0c.png',
   },
   {
     id: 'climate-monitoring',
@@ -766,7 +792,7 @@ export const industries: Industry[] = [
     description:
       'Advanced climate monitoring solutions for environmental and industrial applications enabling data collection and analysis.',
     icon: 'climate',
-    image: embeddedIotImg,
+    image: '/assets/aistudio/embedded_eb02073d.png',
   },
   {
     id: 'manufacturing-factories',
@@ -774,7 +800,7 @@ export const industries: Industry[] = [
     description:
       'Controllers and monitoring systems that enhance manufacturing processes by ensuring precision, efficiency, and quality control.',
     icon: 'manufacturing',
-    image: factoryAutomationImg,
+    image: '/assets/aistudio/control_panel_9f36a063.png',
   },
 ];
 

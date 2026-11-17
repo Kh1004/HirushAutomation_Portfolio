@@ -112,7 +112,7 @@ export default function HeroSlider() {
                 className="lg:col-span-5"
               >
                 <div className="rounded-xl overflow-hidden border border-white/15 bg-[#18181B] shadow-2xl">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-[#111111]">
+                  <div className="relative aspect-[16/10] overflow-hidden bg-[#111111]">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={current.id}
