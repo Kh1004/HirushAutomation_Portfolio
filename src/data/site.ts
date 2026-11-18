@@ -61,6 +61,7 @@ export interface Tool {
   category: string;
   description: string;
   icon: ToolIconKey;
+  logo:ImageSource;
 }
 
 export type ProductIconKey = 'scada' | 'alert' | 'sentinel' | 'collector' | 'appstudio' | 'app';
@@ -179,7 +180,7 @@ export const hero = {
 /* 4. ABOUT, MISSION & VISION */
 export const about = {
   title: 'About Us',
-  image: '/assets/aistudio/control_panel_9f36a063.png' as ImageSource,
+  image: '/assets/aistudio/about_us.png' as ImageSource,
   imageAlt: 'Electrical and Control Panel Engineering',
   intro: [
     'Hirush Automation Pte Ltd was established in Singapore as a distinguished Electrical, Control, and Automation Company. In addition to our presence in Singapore, Hirush Automation Pvt Ltd in Sri Lanka also contributes significantly to our success. Our expansion into Sri Lanka has been driven by the same commitment to excellence in Electrical, Control, and Automation services.',
@@ -208,7 +209,7 @@ export const vision = {
 /* 5. SERVICES */
 export const servicesSection = {
   eyebrow: 'Services',
-  heading: 'Comprehensive electrical, control, and automation solutions for industrial excellence',
+  heading: 'Comprehensive solutions for industrial excellence',
 };
 
 export const services: Service[] = [
@@ -227,7 +228,7 @@ export const services: Service[] = [
       'Testing, Commissioning & Support',
     ],
     icon: 'plc',
-    image: '/assets/aistudio/plc_48c8d680.png',
+    image: '/assets/aistudio/PLC_Programming.png',
   },
   {
     id: 'hmi-scada-design',
@@ -278,7 +279,7 @@ export const services: Service[] = [
       'Predictive Maintenance Support',
     ],
     icon: 'iot',
-    image: '/assets/aistudio/project1_5bc6bd0f.png',
+    image: '/assets/aistudio/IOT.png',
   },
   {
     id: 'embedded-controller-design',
@@ -349,6 +350,7 @@ export const tools: Tool[] = [
     category: 'Design Software',
     description: 'Professional 2D and 3D CAD design for electrical panel layouts and schematics.',
     icon: 'cad',
+    logo: '/assets/images/tools/autocad-icon.png', 
   },
   {
     id: 'eplan-electric',
@@ -357,6 +359,7 @@ export const tools: Tool[] = [
     description:
       'Advanced electrical engineering design software for comprehensive project documentation.',
     icon: 'lines',
+    logo: '/assets/images/tools/EPL_Logo.png', 
   },
   {
     id: 'paneldraw',
@@ -365,6 +368,7 @@ export const tools: Tool[] = [
     description:
       'Specialized software for designing electrical panel layouts with component libraries.',
     icon: 'panel',
+    logo: '', 
   },
   {
     id: 'pscad',
@@ -372,6 +376,7 @@ export const tools: Tool[] = [
     category: 'Simulation Software',
     description: 'Power system simulation and analysis tool for electrical network studies.',
     icon: 'chart',
+    logo: '/assets/images/tools/PSCAD.png', 
   },
   {
     id: 'siemens-tia-portal',
@@ -380,6 +385,7 @@ export const tools: Tool[] = [
     description:
       'Totally Integrated Automation Portal for Siemens S7 PLC programming and configuration.',
     icon: 'plc',
+    logo: '/assets/images/tools/TIA.png', 
   },
   {
     id: 'allen-bradley',
@@ -388,6 +394,7 @@ export const tools: Tool[] = [
     description:
       'Rockwell Automation Studio 5000 for ControlLogix and CompactLogix PLC programming.',
     icon: 'plc',
+    logo: '/assets/images/tools/AllenBradley.png',  
   },
   {
     id: 'schneider-ecostruxure',
@@ -396,6 +403,7 @@ export const tools: Tool[] = [
     description:
       'EcoStruxure Automation Enterprise for Schneider Modicon PLC programming and configuration.',
     icon: 'plc',
+    logo: '/assets/images/tools/SchneiderEcoStruxure.png',
   },
 ];
 
@@ -419,7 +427,7 @@ export const products: Product[] = [
       'Centralized system management',
     ],
     icon: 'scada',
-    image: '/assets/aistudio/hmi_35e7747e.png',
+    image: '/assets/images/Products/HirushCore SCADA.png',
   },
   {
     id: 'hirushcore-alert',
@@ -434,7 +442,7 @@ export const products: Product[] = [
       'Critical event escalation support',
     ],
     icon: 'alert',
-    image: '/assets/aistudio/project1_5bc6bd0f.png',
+    image: '/assets/images/Products/HirushCore Alert.png',
   },
   {
     id: 'hirushcore-sentinel',
@@ -448,7 +456,7 @@ export const products: Product[] = [
       'Web-based alarm dashboards',
     ],
     icon: 'sentinel',
-    image: '/assets/aistudio/project4_3ca87e0c.png',
+    image: '/assets/images/Products/HirushCore Sentinel.png',
   },
   {
     id: 'hirushcore-data-collector',
@@ -463,7 +471,7 @@ export const products: Product[] = [
       'Integration with industrial applications',
     ],
     icon: 'collector',
-    image: '/assets/aistudio/project3_ea8a1936.png',
+    image: '/assets/images/Products/HirushCore Data Collector.png',
   },
   {
     id: 'hirushcore-appstudio',
@@ -478,7 +486,7 @@ export const products: Product[] = [
       'Secure user authentication',
     ],
     icon: 'appstudio',
-    image: '/assets/aistudio/embedded_eb02073d.png',
+    image: '/assets/images/Products/HirushCore AppStudio.png',
   },
   {
     id: 'hirushcore-app',
@@ -493,7 +501,7 @@ export const products: Product[] = [
       'Secure industrial connectivity',
     ],
     icon: 'app',
-    image: '/assets/aistudio/project2_842d791d.png',
+    image: '/assets/images/Products/HirushCore App.png',
   },
 ];
 
@@ -538,11 +546,6 @@ export const projectGallery: GalleryItem[] = [
     id: 'gallery-water',
     label: 'Water Treatment',
     image: '/assets/aistudio/project3_ea8a1936.png',
-  },
-  {
-    id: 'gallery-marine',
-    label: 'HMI/SCADA Design',
-    image: '/assets/aistudio/project2_842d791d.png',
   },
 ];
 
@@ -710,7 +713,7 @@ export const projects: Project[] = [
     role: 'PLC Programming and SCADA/HMI Development',
     location: 'Sri Lanka',
     capability: 'plc',
-    image: '/assets/aistudio/project3_ea8a1936.png',
+    image: '/assets/aistudio/OTV.png',
   },
   {
     id: 'bms-system-omni-logistics',
@@ -792,7 +795,7 @@ export const industries: Industry[] = [
     description:
       'Advanced climate monitoring solutions for environmental and industrial applications enabling data collection and analysis.',
     icon: 'climate',
-    image: '/assets/aistudio/embedded_eb02073d.png',
+    image: '/assets/aistudio/Climate Monitoring.png',
   },
   {
     id: 'manufacturing-factories',

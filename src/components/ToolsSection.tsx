@@ -5,6 +5,7 @@ import { Activity, Cable, CircuitBoard, Compass, Cpu, LayoutGrid, Sliders } from
 import { motion } from 'motion/react';
 import { tools, toolsSection } from '@/data/site';
 import type { ToolIconKey } from '@/data/site';
+import Image from 'next/image';
 
 const iconMap: Record<ToolIconKey, React.ReactNode> = {
   cad: <Compass className="w-5 h-5" />,
@@ -65,8 +66,21 @@ export default function ToolsSection() {
                 whileHover={{ y: -3 }}
                 className="group flex items-center gap-4 px-5 py-4 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-[#FC542B]/50 transition-colors duration-200"
               >
-                <div className="w-12 h-12 rounded-lg bg-[#B81005]/15 border border-[#B81005]/30 text-[#FC542B] group-hover:bg-[#B81005] group-hover:text-white transition-colors duration-200 flex items-center justify-center shrink-0">
-                  {toolLogoMap[tool.id] ?? iconMap[tool.icon]}
+                <div className="relative w-12 h-12 rounded-lg bg-white/5 border border-white/10 group-hover:border-[#FC542B]/50 transition-colors duration-200 flex items-center justify-center shrink-0 overflow-hidden p-2">
+                  {tool.logo ? (
+                    <Image
+                      src={tool.logo}
+                      alt={tool.name}
+                      width={32}
+                      height={32}
+                      referrerPolicy="no-referrer"
+                      className="w-8 h-8 object-contain"
+                    />
+                  ) : (
+                    <span className="text-[#FC542B] group-hover:text-white">
+                      {toolLogoMap[tool.id] ?? iconMap[tool.icon]}
+                    </span>
+                  )}
                 </div>
                 <span className="text-[15.5px] font-semibold text-white leading-snug">
                   {tool.name}
@@ -87,9 +101,22 @@ export default function ToolsSection() {
                 whileHover={{ y: -3 }}
                 className="group flex items-center gap-4 px-5 py-4 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-[#FC542B]/50 transition-colors duration-200"
               >
-                <div className="w-12 h-12 rounded-lg bg-[#B81005]/15 border border-[#B81005]/30 text-[#FC542B] group-hover:bg-[#B81005] group-hover:text-white transition-colors duration-200 flex items-center justify-center shrink-0">
-                  {toolLogoMap[tool.id] ?? iconMap[tool.icon]}
-                </div>
+                <div className="relative w-12 h-12 rounded-lg bg-white/5 border border-white/10 group-hover:border-[#FC542B]/50 transition-colors duration-200 flex items-center justify-center shrink-0 overflow-hidden p-2">
+  {tool.logo ? (
+    <Image
+      src={tool.logo}
+      alt={tool.name}
+      width={32}
+      height={32}
+      referrerPolicy="no-referrer"
+      className="w-8 h-8 object-contain"
+    />
+  ) : (
+    <span className="text-[#FC542B] group-hover:text-white">
+      {toolLogoMap[tool.id] ?? iconMap[tool.icon]}
+    </span>
+  )}
+</div>
                 <span className="text-[15.5px] font-semibold text-white leading-snug">
                   {tool.name}
                 </span>
