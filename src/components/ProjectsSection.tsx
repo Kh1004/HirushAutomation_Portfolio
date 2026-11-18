@@ -13,7 +13,7 @@ import {
   Search,
   X,
 } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import {
   featuredProjectIds,
   hero,
@@ -30,12 +30,27 @@ const flagshipStudies: Project[] = featuredProjectIds
 
 const uniqueClients = Array.from(new Set(projects.map((p) => p.client)));
 
+function scrollGalleryStrip(strip: HTMLDivElement, direction: 'prev' | 'next') {
+  const card = strip.querySelector<HTMLElement>('button');
+  const step = (card?.offsetWidth ?? 265) + 16;
+  const atEnd = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 4;
+
+  if (direction === 'next' && atEnd) {
+    strip.scrollTo({ left: 0, behavior: 'smooth' });
+    return;
+  }
+
+  strip.scrollBy({ left: direction === 'next' ? step : -step, behavior: 'smooth' });
+}
+
 export default function ProjectsSection() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [filter, setFilter] = useState<ProjectFilterKey>('all');
   const [query, setQuery] = useState('');
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const [galleryPaused, setGalleryPaused] = useState(false);
   const stripRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!drawerOpen && lightboxIdx === null) return;
@@ -56,10 +71,20 @@ export default function ProjectsSection() {
   }, [drawerOpen, lightboxIdx]);
 
   const scrollStrip = (direction: 'prev' | 'next') => {
-    if (!stripRef.current) return;
-    const delta = direction === 'next' ? 300 : -300;
-    stripRef.current.scrollBy({ left: delta, behavior: 'smooth' });
+    if (stripRef.current) scrollGalleryStrip(stripRef.current, direction);
   };
+
+  useEffect(() => {
+    if (prefersReducedMotion || galleryPaused || drawerOpen || lightboxIdx !== null) return;
+
+    const interval = window.setInterval(() => {
+      if (document.visibilityState === 'visible' && stripRef.current) {
+        scrollGalleryStrip(stripRef.current, 'next');
+      }
+    }, projectReference.galleryAutoScrollMs);
+
+    return () => window.clearInterval(interval);
+  }, [prefersReducedMotion, galleryPaused, drawerOpen, lightboxIdx]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -69,6 +94,7 @@ export default function ProjectsSection() {
         !q ||
         p.title.toLowerCase().includes(q) ||
         p.client.toLowerCase().includes(q) ||
+        (p.executedFor?.toLowerCase().includes(q) ?? false) ||
         p.role.toLowerCase().includes(q) ||
         p.location.toLowerCase().includes(q);
       return matchesFilter && matchesQuery;
@@ -108,7 +134,7 @@ export default function ProjectsSection() {
             className="inline-flex items-center gap-2 px-4 py-2.5 text-[13.5px] font-semibold text-white bg-[#18181B] hover:bg-[#B81005] rounded-md transition-colors duration-200 whitespace-nowrap self-start md:self-auto"
           >
             <span>
-              {projectReference.allProjectsLabel} ({projects.length})
+              {projectReference.allProjectsLabel}
             </span>
             <ArrowUpRight className="w-4 h-4" />
           </motion.button>
@@ -169,10 +195,23 @@ export default function ProjectsSection() {
                   <h3 className="text-[16.5px] font-bold text-white leading-snug mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-[13px] text-neutral-300 flex items-start gap-2">
-                    <Building2 className="w-3.5 h-3.5 text-[#FC542B] mt-0.5 shrink-0" />
-                    <span>{project.client}</span>
-                  </p>
+                  {(project.client || project.executedFor) && (
+                    <div className="text-[13px] text-neutral-300 flex items-start gap-2">
+                      <Building2 className="w-3.5 h-3.5 text-[#FC542B] mt-0.5 shrink-0" />
+                      <div className="space-y-0.5">
+                        {project.client && (
+                          <p>
+                            {projectReference.clientLabel}: {project.client}
+                          </p>
+                        )}
+                        {project.executedFor && (
+                          <p>
+                            {projectReference.executedForLabel} {project.executedFor}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -194,6 +233,10 @@ export default function ProjectsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            onMouseEnter={() => setGalleryPaused(true)}
+            onMouseLeave={() => setGalleryPaused(false)}
+            onFocusCapture={() => setGalleryPaused(true)}
+            onBlurCapture={() => setGalleryPaused(false)}
             className="mt-10 pt-8 border-t border-neutral-200"
           >
             <div className="flex items-center justify-between gap-4 mb-4">
@@ -405,7 +448,7 @@ export default function ProjectsSection() {
                     {projectReference.subtitle}
                   </p>
                   <h3 className="text-[20px] font-bold text-[#111111]">
-                    {projectReference.title} ({projects.length})
+                    {projectReference.title}
                   </h3>
                 </div>
                 <button
@@ -472,7 +515,20 @@ export default function ProjectsSection() {
                             <span>{project.location}</span>
                           </span>
                         </div>
-                        <div className="text-[13px] text-[#555555] mt-1">{project.client}</div>
+                        {(project.client || project.executedFor) && (
+                          <div className="text-[13px] text-[#555555] mt-1 space-y-0.5">
+                            {project.client && (
+                              <div>
+                                {projectReference.clientLabel}: {project.client}
+                              </div>
+                            )}
+                            {project.executedFor && (
+                              <div>
+                                {projectReference.executedForLabel} {project.executedFor}
+                              </div>
+                            )}
+                          </div>
+                        )}
                         <div className="text-[12px] text-[#666666] mt-1 font-medium">
                           {project.role}
                         </div>

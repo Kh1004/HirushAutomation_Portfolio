@@ -4,7 +4,9 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { motion, useMotionValueEvent, useScroll, useSpring } from 'motion/react';
-import { nav, site } from '@/data/site';
+import { nav, sectionVisibility, site } from '@/data/site';
+
+const visibleNav = sectionVisibility.tools ? nav : nav.filter((item) => item.href !== '#tools');
 
 export default function Navbar() {
   const [activeHref, setActiveHref] = useState<string>('');
@@ -32,7 +34,7 @@ export default function Navbar() {
   });
 
   useEffect(() => {
-    const sectionIds = nav.map((item) => item.href.replace('#', '')).filter(Boolean);
+    const sectionIds = visibleNav.map((item) => item.href.replace('#', '')).filter(Boolean);
     const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -92,7 +94,7 @@ export default function Navbar() {
 
         {/* Zone 2: Concise Single-Line Navigation Links */}
         <nav aria-label="Primary navigation" className="hidden lg:flex items-center gap-5">
-          {nav.map((item) => {
+          {visibleNav.map((item) => {
             const isActive = activeHref === item.href;
             return (
               <a
@@ -150,7 +152,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="lg:hidden bg-[#141416] border-t border-white/10 px-5 py-4 shadow-xl">
           <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
-            {nav.map((item) => {
+            {visibleNav.map((item) => {
               const isActive = activeHref === item.href;
               return (
                 <a

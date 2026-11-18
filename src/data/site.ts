@@ -12,6 +12,11 @@ import factoryAutomationImg from '@/assets/images/project_factory_automation_179
  * '/assets/images/gallery/my-photo.jpg'.
  * ========================================================================== */
 
+/* Toggle a section on/off without deleting its content or links. */
+export const sectionVisibility = {
+  tools: false,
+};
+
 export type ImageSource = StaticImageData | string;
 
 export type ServiceIconKey = 'plc' | 'hmi' | 'panel' | 'iot' | 'embedded';
@@ -61,7 +66,7 @@ export interface Tool {
   category: string;
   description: string;
   icon: ToolIconKey;
-  logo:ImageSource;
+  logo: ImageSource;
 }
 
 export type ProductIconKey = 'scada' | 'alert' | 'sentinel' | 'collector' | 'appstudio' | 'app';
@@ -86,8 +91,9 @@ export interface Project {
   id: string;
   title: string;
   client: string;
+  executedFor?: string;
   role: string;
-  location: 'Singapore' | 'Sri Lanka';
+  location: 'Singapore' | 'Sri Lanka' | 'Thailand';
   capability: ProjectCapability;
   image?: ImageSource;
   imageAlt?: string;
@@ -350,7 +356,7 @@ export const tools: Tool[] = [
     category: 'Design Software',
     description: 'Professional 2D and 3D CAD design for electrical panel layouts and schematics.',
     icon: 'cad',
-    logo: '/assets/images/tools/autocad-icon.png', 
+    logo: '/assets/images/tools/autocad-icon.png',
   },
   {
     id: 'eplan-electric',
@@ -359,7 +365,7 @@ export const tools: Tool[] = [
     description:
       'Advanced electrical engineering design software for comprehensive project documentation.',
     icon: 'lines',
-    logo: '/assets/images/tools/EPL_Logo.png', 
+    logo: '/assets/images/tools/EPL_Logo.png',
   },
   {
     id: 'paneldraw',
@@ -368,7 +374,7 @@ export const tools: Tool[] = [
     description:
       'Specialized software for designing electrical panel layouts with component libraries.',
     icon: 'panel',
-    logo: '', 
+    logo: '',
   },
   {
     id: 'pscad',
@@ -376,7 +382,7 @@ export const tools: Tool[] = [
     category: 'Simulation Software',
     description: 'Power system simulation and analysis tool for electrical network studies.',
     icon: 'chart',
-    logo: '/assets/images/tools/PSCAD.png', 
+    logo: '/assets/images/tools/PSCAD.png',
   },
   {
     id: 'siemens-tia-portal',
@@ -385,7 +391,7 @@ export const tools: Tool[] = [
     description:
       'Totally Integrated Automation Portal for Siemens S7 PLC programming and configuration.',
     icon: 'plc',
-    logo: '/assets/images/tools/TIA.png', 
+    logo: '/assets/images/tools/TIA.png',
   },
   {
     id: 'allen-bradley',
@@ -394,7 +400,7 @@ export const tools: Tool[] = [
     description:
       'Rockwell Automation Studio 5000 for ControlLogix and CompactLogix PLC programming.',
     icon: 'plc',
-    logo: '/assets/images/tools/AllenBradley.png',  
+    logo: '/assets/images/tools/AllenBradley.png',
   },
   {
     id: 'schneider-ecostruxure',
@@ -508,9 +514,12 @@ export const products: Product[] = [
 /* 9. PROJECT REFERENCE, FEATURED SPOTLIGHTS & GALLERY */
 export const projectReference = {
   title: 'Project Reference',
-  subtitle: 'Electrical & Control — Singapore & Sri Lanka',
-  allProjectsLabel: 'All Projects',
+  subtitle: 'Electrical & Control — Singapore , Sri Lanka & Thailand',
+  allProjectsLabel: 'More Projects',
+  clientLabel: 'Client',
+  executedForLabel: 'Executed for',
   galleryTitle: 'Project Gallery',
+  galleryAutoScrollMs: 2000,
 };
 
 export const featuredProjectIds: string[] = [
@@ -522,30 +531,45 @@ export const featuredProjectIds: string[] = [
 export const projectGallery: GalleryItem[] = [
   {
     id: 'gallery-panel',
-    label: 'Electrical & Control Panel',
+    label: '',
     image: '/assets/aistudio/control_panel_9f36a063.png',
   },
-  { id: 'gallery-plc', label: 'PLC Programming', image: '/assets/aistudio/plc_48c8d680.png' },
-  { id: 'gallery-scada', label: 'HMI/SCADA Design', image: '/assets/aistudio/hmi_35e7747e.png' },
+  { id: 'gallery-plc', label: '', image: '/assets/aistudio/plc_48c8d680.png' },
+  { id: 'gallery-scada', label: '', image: '/assets/aistudio/hmi_35e7747e.png' },
   {
     id: 'gallery-embedded',
-    label: 'Embedded Controller Design',
+    label: '',
     image: '/assets/aistudio/embedded_eb02073d.png',
   },
   {
     id: 'gallery-datacenter',
-    label: 'Data Centers',
+    label: '',
     image: '/assets/aistudio/project1_5bc6bd0f.png',
   },
   {
     id: 'gallery-chiller',
-    label: 'Chiller Systems',
+    label: '',
     image: '/assets/aistudio/project4_3ca87e0c.png',
   },
   {
     id: 'gallery-water',
-    label: 'Water Treatment',
+    label: '',
     image: '/assets/aistudio/project3_ea8a1936.png',
+  },
+  {
+    id: 'gallery-omni-logistic',
+    label: '',
+    image: '/assets/aistudio/omni.png',
+  },
+  {
+    id: 'gallery-tual',
+    label: '',
+    image: '/assets/aistudio/tual.png',
+  },
+  {
+    id: 'gallery-redmart',
+    label: '',
+    image: '/assets/aistudio/rec.png',
   },
 ];
 
@@ -560,9 +584,46 @@ export const projectFilters: { key: ProjectFilterKey; label: string }[] = [
 
 export const projects: Project[] = [
   {
+    id: 'flow-lab-system-atlanticsolution',
+    title: 'Flow Lab System',
+    client: 'Atlantic Solution',
+    executedFor: 'Atlantic Solution',
+    role: 'Design and Built',
+    location: 'Singapore',
+    capability: 'design',
+  },
+  {
+    id: 'power-train-unit-ptu',
+    title: 'Power Train Unit (PTU)',
+    client: 'Digital Edge Data Centre',
+    executedFor: 'RSA',
+    role: 'Design and Built',
+    location: 'Thailand',
+    capability: 'design',
+  },
+  {
+    id: 'epms-system-pg',
+    title: 'EPMS System',
+    client: 'P&G',
+    executedFor: '',
+    role: 'Design and Built',
+    location: 'Singapore',
+    capability: 'design',
+  },
+  {
+    id: 'sand-filter-system-zoo',
+    title: 'Sand Filter System',
+    client: 'Singapore Zoological Gardens',
+    executedFor: 'Memiontec Pte Ltd',
+    role: 'Design and Built',
+    location: 'Singapore',
+    capability: 'design',
+  },
+  {
     id: 'treated-waste-water-recovery',
     title: 'Treated Waste Water Recovery for Process Use',
     client: 'Petrochemical Corporation of Singapore Pte Ltd',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -572,6 +633,7 @@ export const projects: Project[] = [
     id: 'ro-di-system-stats-chippac',
     title: 'RO/DI System',
     client: 'Stats ChipPAC Pte Ltd',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -580,6 +642,7 @@ export const projects: Project[] = [
     id: 'process-cooling-water-system',
     title: 'Process Cooling Water System',
     client: 'Stats ChipPAC Pte Ltd',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -588,6 +651,7 @@ export const projects: Project[] = [
     id: 'polishing-system',
     title: 'Polishing System',
     client: 'Stats ChipPAC Pte Ltd',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -596,6 +660,7 @@ export const projects: Project[] = [
     id: 'demineralized-water-treatment-plant',
     title: 'Demineralized Water Treatment Plant',
     client: 'Keppel Sighers Engineering Singapore Pte Ltd',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -604,6 +669,7 @@ export const projects: Project[] = [
     id: 'semakau-electrical-generation-distribution',
     title: 'Upgrading of the Electrical Generation and Distribution System at Semakau Land Fill',
     client: 'National Environment Agency (NEA)',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Project Management and Technical Support',
     location: 'Singapore',
     capability: 'management',
@@ -613,6 +679,7 @@ export const projects: Project[] = [
     id: 'remote-operation-monitoring-ipu-valves',
     title: 'Remote Operation and Monitoring of IPU Valves at Reservoirs and Ponds',
     client: 'Public Utilities Board (PUB)',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -621,6 +688,7 @@ export const projects: Project[] = [
     id: 'upgrading-plant-water-system-cwrp',
     title: 'Upgrading of Plant Water System at Changi Water Reclamation Plant (CWRP)',
     client: 'Public Utilities Board (PUB)',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Project Management and Technical Support',
     location: 'Singapore',
     capability: 'management',
@@ -629,6 +697,7 @@ export const projects: Project[] = [
     id: 'sodium-hypochlorite-dosing-bedok',
     title: 'Sodium Hypochlorite Dosing System at Bedok Water Works',
     client: 'Public Utilities Board (PUB)',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Project Management and Technical Support',
     location: 'Singapore',
     capability: 'management',
@@ -637,6 +706,7 @@ export const projects: Project[] = [
     id: 'pulsator-vacuum-chua-chu-kang',
     title: 'Replacement of Pulsator Vacuum System at Chua Chu Kang Water Works',
     client: 'Public Utilities Board (PUB)',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Project Management and Technical Support',
     location: 'Singapore',
     capability: 'management',
@@ -645,31 +715,16 @@ export const projects: Project[] = [
     id: 'swimming-pool-filtration-electrical',
     title: 'Upgrading of Swimming Pool Filtration System (Electrical)',
     client: 'Singapore Polytechnic',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
-  },
-  {
-    id: 'climate-monitoring-tengah-air-base',
-    title: 'Climate Monitoring System',
-    client: 'Tengah Air Base',
-    role: 'Design and Built',
-    location: 'Singapore',
-    capability: 'design',
-  },
-  {
-    id: 'fuel-injection-calibration',
-    title: 'Fuel Injection Calibration System',
-    client: 'Collin Aerospace',
-    role: 'PLC Programming and HMI Design',
-    location: 'Singapore',
-    capability: 'plc',
-    image: factoryAutomationImg,
   },
   {
     id: 'ro-system-singapore-polytechnic',
     title: 'RO System',
     client: 'Singapore Polytechnic',
+    executedFor: 'Memiontec Pte Ltd',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -678,6 +733,7 @@ export const projects: Project[] = [
     id: 'wave-generation-sump-pump-control',
     title: 'Automated Wave Generation and Sump Pump Control System',
     client: 'Nanyang Technological University',
+    executedFor: '',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -686,6 +742,7 @@ export const projects: Project[] = [
     id: 'ro-di-chemical-transfer',
     title: 'RO DI System and Chemical Transfer System',
     client: '2D Material Pte Ltd',
+    executedFor: '',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -694,14 +751,7 @@ export const projects: Project[] = [
     id: 'ro-system-800-super',
     title: 'RO System',
     client: '800 Super Waste Management Pte Ltd',
-    role: 'Design and Built',
-    location: 'Singapore',
-    capability: 'design',
-  },
-  {
-    id: 'special-gas-filling-system',
-    title: 'Special Gas Filling System',
-    client: 'Air Liquide Singapore Pte Ltd',
+    executedFor: '',
     role: 'Design and Built',
     location: 'Singapore',
     capability: 'design',
@@ -710,6 +760,7 @@ export const projects: Project[] = [
     id: 'programming-support-otv-veolia',
     title: 'Programming Support and Troubleshooting',
     client: 'OTV VEOLIA (Sri Lanka)',
+    executedFor: '',
     role: 'PLC Programming and SCADA/HMI Development',
     location: 'Sri Lanka',
     capability: 'plc',
@@ -719,15 +770,17 @@ export const projects: Project[] = [
     id: 'bms-system-omni-logistics',
     title: 'BMS System',
     client: 'OMNI Logistics',
+    executedFor: 'Electromatic Pte Ltd',
     role: 'PLC Programming and SCADA Development',
     location: 'Singapore',
     capability: 'plc',
-    image: '/assets/aistudio/OMNI.png',
+    image: '/assets/aistudio/omni.png',
   },
   {
     id: 'vertical-injector-ls-marine',
     title: 'Vertical Injector',
     client: 'LS Marine Solution',
+    executedFor: 'Electromatic Pte Ltd',
     role: 'PLC Programming and SCADA Development',
     location: 'Singapore',
     capability: 'plc',
@@ -737,6 +790,7 @@ export const projects: Project[] = [
     id: 'ro-system-fn-foods',
     title: 'RO System',
     client: 'F&N Foods Pte Ltd',
+    executedFor: '',
     role: 'PLC Programming and HMI Development',
     location: 'Singapore',
     capability: 'plc',
@@ -771,7 +825,7 @@ export const industries: Industry[] = [
     description:
       'Advanced control and monitoring systems to optimize data center operations, ensuring reliability and efficiency.',
     icon: 'dataCenter',
-    image: '/assets/aistudio/project1_5bc6bd0f.png',
+    image: '/assets/aistudio/IOT.png',
   },
   {
     id: 'acmv',
@@ -787,7 +841,7 @@ export const industries: Industry[] = [
     description:
       'Solutions for efficient cooling and temperature control essential for various industrial processes.',
     icon: 'chiller',
-    image: '/assets/aistudio/project4_3ca87e0c.png',
+    image: '/assets/aistudio/chiller_system.png',
   },
   {
     id: 'climate-monitoring',
@@ -809,7 +863,7 @@ export const industries: Industry[] = [
 
 export const industriesClosing =
   "";
-  // "In each of these industries, our focus is on designing, implementing, and maintaining customized electronics-based controllers to meet specific operational requirements. Whether it's optimizing processes, enhancing safety, or ensuring compliance, our tailored solutions are designed to address the unique challenges and goals of our clients across diverse sectors.";
+// "In each of these industries, our focus is on designing, implementing, and maintaining customized electronics-based controllers to meet specific operational requirements. Whether it's optimizing processes, enhancing safety, or ensuring compliance, our tailored solutions are designed to address the unique challenges and goals of our clients across diverse sectors.";
 
 /* 11. CONTACT SECTION */
 export const contactSection = {

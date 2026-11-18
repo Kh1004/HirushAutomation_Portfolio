@@ -11,6 +11,7 @@ import IndustriesServed from '@/components/IndustriesServed';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
+import { sectionVisibility } from '@/data/site';
 
 export default function HomePage() {
   return (
@@ -20,7 +21,7 @@ export default function HomePage() {
         <HeroSlider />
         <AboutSection />
         <FeaturedServices />
-        <ToolsSection />
+        {sectionVisibility.tools && <ToolsSection />}
         <ProductsSection />
         <ProjectsSection />
         <TrainingsSection />
