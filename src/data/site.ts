@@ -162,7 +162,7 @@ export const hero = {
   secondaryCta: { label: 'Request Consultation', href: '#contact' } as LinkItem,
   backgroundImage: heroAutomationImg as ImageSource,
   slides: [
-    { id: 'plc', label: 'PLC Programming', image: '/assets/aistudio/plc_48c8d680.png' },
+    { id: 'plc', label: 'PLC Programming', image: '/assets/aistudio/PLC_Programming.png' },
     { id: 'hmi', label: 'HMI/SCADA Design', image: '/assets/aistudio/hmi_35e7747e.png' },
     {
       id: 'panel',
@@ -722,7 +722,7 @@ export const projects: Project[] = [
     role: 'PLC Programming and SCADA Development',
     location: 'Singapore',
     capability: 'plc',
-    image: '/assets/aistudio/project4_3ca87e0c.png',
+    image: '/assets/aistudio/OMNI.png',
   },
   {
     id: 'vertical-injector-ls-marine',
@@ -763,7 +763,7 @@ export const industries: Industry[] = [
     description:
       'Gas control systems offering precise control and safety measures for gas handling and distribution.',
     icon: 'gas',
-    image: '/assets/aistudio/hmi_35e7747e.png',
+    image: '/assets/aistudio/Gas Systems.png',
   },
   {
     id: 'data-centers',
@@ -808,7 +808,8 @@ export const industries: Industry[] = [
 ];
 
 export const industriesClosing =
-  "In each of these industries, our focus is on designing, implementing, and maintaining customized electronics-based controllers to meet specific operational requirements. Whether it's optimizing processes, enhancing safety, or ensuring compliance, our tailored solutions are designed to address the unique challenges and goals of our clients across diverse sectors.";
+  "";
+  // "In each of these industries, our focus is on designing, implementing, and maintaining customized electronics-based controllers to meet specific operational requirements. Whether it's optimizing processes, enhancing safety, or ensuring compliance, our tailored solutions are designed to address the unique challenges and goals of our clients across diverse sectors.";
 
 /* 11. CONTACT SECTION */
 export const contactSection = {
